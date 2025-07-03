@@ -1,6 +1,9 @@
 # Simple RDMA Server-Client Example
 
-A minimal demonstration of RDMA (Remote Direct Memory Access) communication using `libibverbs` and `librdmacm`. This project includes a basic **server** (listens for messages) and **client** (sends messages interactively) to showcase RDMA's low-latency capabilities.
+This project demonstrates a minimal example of RDMA (Remote Direct Memory Access) communication using libibverbs and librdmacm libraries.  
+It includes two components:  
+**server**: Listens for incoming RDMA connection requests and receives messages from clients.  
+**client**: Connects to the server and sends messages interactively.
 
 ## Build & Run
 ```sh
