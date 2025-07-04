@@ -1,6 +1,6 @@
 CC = gcc
 CFLAGS = -Wall -O2
-LDFLAGS = -libverbs -lrdmacm
+LDFLAGS = -libverbs -lrdmacm -lpthread
 
 all: rdma_server rdma_client
 
