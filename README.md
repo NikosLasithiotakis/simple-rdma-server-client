@@ -1,18 +1,53 @@
 # Simple RDMA Server-Client Example
 
-This project demonstrates a minimal example of RDMA (Remote Direct Memory Access) communication using libibverbs and librdmacm libraries.  
-It includes two components:  
-**server**: Accepts multiple client connections concurrently using threads. Receives messages from each connected client.  
-**client**: Connects to the server and sends messages interactively.
+This project demonstrates a robust example of RDMA (Remote Direct Memory Access) communication using the `libibverbs` and `librdmacm` libraries.
 
-## Build & Run
+It features decoupled connection management, page-aligned memory registration, and a dedicated worker thread pool.
+
+## Prerequisites
+
+- Linux OS with RDMA-capable hardware (InfiniBand or RoCE) or SoftRoCE (RXE) configured.
+- `libibverbs-dev` and `librdmacm-dev` packages installed.
+- `cmake` and `build-essential`.
+
+## Configuration
+
+Before running, edit the `config.yml` file in the root directory to match the IP address of your RDMA interface:
+
+```yaml
+ip: "192.168.1.100"
+port: "7741"
+
+```
+
+## Build Instructions
+
+This project uses CMake. To compile both the server and the client:
+
 ```sh
-make # Compiles both server and client
+mkdir build
+cd build
+cmake ..
+make
 
-Usage:
+```
 
-#Terminal 1 (server):
+## Usage
+
+**Terminal 1 (Server):**
+Run the server from the build directory:
+
+```sh
 ./rdma_server
 
-#Terminal 2, 3, ... (multiple clients):
-./rdma_client # Type messages and press Enter to send, 'exit' to close the client connection
+```
+
+**Terminal 2, 3, ... (Multiple Clients):**
+Run the client from the build directory. You can connect multiple clients concurrently.
+
+```sh
+./rdma_client
+
+```
+
+Type your messages and press `Enter` to send them via RDMA. Type `exit` to safely tear down the QP, deregister memory, and close the client connection.
