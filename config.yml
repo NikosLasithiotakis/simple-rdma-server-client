@@ -1,0 +1,7 @@
+ip: "192.168.5.120"
+port: "7741"
+
+# RDMA Configuration
+# Replace these with your actual InfiniBand/RoCE interface IP
+#ip: "192.168.1.100"
+#port: "7741"
